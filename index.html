@@ -15,7 +15,21 @@
     <p>Your ultimate Roblox game codes vault!</p>
   </header>
 
-  <main id="games">
+  <input type="text" id="search" placeholder="Search game..." />
+
+<div class="categories">
+  <button onclick="filterCategory('All')">All</button>
+  <button onclick="filterCategory('Anime')">Anime</button>
+  <button onclick="filterCategory('Simulator')">Simulator</button>
+  <button onclick="filterCategory('RP')">RP</button>
+  <button onclick="filterCategory('Action')">Action</button>
+</div>
+
+<main id="games"></main>
+
+<p class="disclaimer">
+⚠️ Codes may expire. Last updated shown per game.
+</p>
     <!-- Games will be loaded by JS -->
   </main>
 
