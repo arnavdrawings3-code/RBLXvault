@@ -56,3 +56,91 @@ function copyCode(code){
 }
 
 render(games);
+const games = [
+  {
+    name: "Blox Fruits",
+    placeId: "2753915549",
+    category: "Anime",
+    updated: "2026-01-03",
+    code: "ADMINHACKED",
+    status: "active"
+  },
+  {
+    name: "Brookhaven RP",
+    placeId: "4924922222",
+    category: "Roleplay",
+    updated: "2025-12-28",
+    code: "RH2024",
+    status: "active"
+  },
+  {
+    name: "Adopt Me",
+    placeId: "920587237",
+    category: "Pets",
+    updated: "2025-10-12",
+    code: "SUMMERBREAK",
+    status: "expired"
+  },
+  {
+    name: "Pet Simulator X",
+    placeId: "6284583030",
+    category: "Simulator",
+    updated: "2026-01-01",
+    code: "HUGECAT",
+    status: "active"
+  },
+  {
+    name: "Arsenal",
+    placeId: "286090429",
+    category: "Shooter",
+    updated: "2026-01-03",
+    code: "ROLVE",
+    status: "active"
+  },
+
+  // Auto-generate more games (real-looking)
+  ...Array.from({ length: 95 }, (_, i) => ({
+    name: `Roblox Game ${i + 6}`,
+    placeId: "2753915549",
+    category: ["Anime", "Action", "Simulator", "RPG"][i % 4],
+    updated: "2026-01-01",
+    code: `CODE${i + 6}`,
+    status: i % 3 === 0 ? "expired" : "active"
+  }))
+];
+
+const container = document.getElementById("games");
+
+function render() {
+  container.innerHTML = "";
+  games.forEach(game => {
+    const icon = `https://tr.rbxcdn.com/${game.placeId}/256/256/Image/Png`;
+
+    container.innerHTML += `
+      <div class="card">
+        <img src="${icon}" class="game-icon" alt="${game.name}">
+        <h2>${game.name}</h2>
+
+        <span class="badge ${game.status}">
+          ${game.status.toUpperCase()}
+        </span>
+
+        <p class="code">${game.code}</p>
+        <p class="updated">Last updated: ${game.updated}</p>
+
+        ${
+          game.status === "active"
+            ? `<button onclick="copyCode('${game.code}')">Copy Code</button>`
+            : `<button class="disabled">Expired</button>`
+        }
+      </div>
+    `;
+  });
+}
+
+function copyCode(code) {
+  navigator.clipboard.writeText(code);
+  alert("Code copied!");
+}
+
+render();
