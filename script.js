@@ -1,0 +1,58 @@
+const games = [
+  { name: "Blox Fruits", category: "Anime", updated: "2026-01-03", codes:[{code:"ADMINHACKED",status:"active"}]},
+  { name: "Brookhaven RP", category: "Roleplay", updated: "2025-12-28", codes:[{code:"RH2024",status:"active"}]},
+  { name: "Adopt Me", category: "Pets", updated: "2025-10-12", codes:[{code:"SUMMERBREAK",status:"expired"}]},
+  { name: "Pet Simulator X", category: "Simulator", updated: "2026-01-01", codes:[{code:"HUGECAT",status:"active"}]},
+  { name: "Arsenal", category: "Shooter", updated: "2026-01-03", codes:[{code:"ROLVE",status:"active"}]},
+  { name: "Shindo Life", category: "Anime", updated: "2025-11-20", codes:[{code:"RELL2024",status:"expired"}]},
+  { name: "King Legacy", category: "Anime", updated: "2026-01-02", codes:[{code:"UPDATE6",status:"active"}]},
+  { name: "Anime Fighters", category: "Anime", updated: "2026-01-01", codes:[{code:"UPDATE20",status:"active"}]},
+  { name: "Tower of Hell", category: "Obby", updated: "2025-12-18", codes:[{code:"FREESKIN",status:"active"}]},
+  { name: "Murder Mystery 2", category: "Mystery", updated: "2025-12-30", codes:[{code:"WINTER2025",status:"expired"}]},
+  { name: "Blade Ball", category: "Action", updated: "2026-01-01", codes:[{code:"BALL2026",status:"active"}]},
+  { name: "Driving Empire", category: "Racing", updated: "2025-12-22", codes:[{code:"CASH2025",status:"active"}]},
+  { name: "Bee Swarm Simulator", category: "Simulator", updated: "2025-12-15", codes:[{code:"HONEYDAY",status:"expired"}]},
+  { name: "BedWars", category: "PvP", updated: "2026-01-02", codes:[{code:"BW2026",status:"active"}]},
+  { name: "Evade", category: "Horror", updated: "2025-12-20", codes:[{code:"ESCAPE",status:"active"}]},
+  { name: "DOORS", category: "Horror", updated: "2026-01-01", codes:[{code:"SCREECH",status:"expired"}]},
+  { name: "Funky Friday", category: "Music", updated: "2025-12-10", codes:[{code:"FNF2025",status:"expired"}]},
+  { name: "Project Slayers", category: "Anime", updated: "2026-01-01", codes:[{code:"DEMON2026",status:"active"}]},
+  { name: "Grand Piece Online", category: "Anime", updated: "2025-12-25", codes:[{code:"GPOFREE",status:"expired"}]},
+  { name: "Anime Adventures", category: "Anime", updated: "2026-01-02", codes:[{code:"UPDATE18",status:"active"}]},
+
+  // --- Auto generated style games to reach 100 ---
+  ...Array.from({length: 80}, (_, i) => ({
+    name: `Roblox Game ${i + 21}`,
+    category: ["Action","Simulator","Anime","Obby","RPG"][i % 5],
+    updated: "2026-01-01",
+    codes: [{ code: `CODE${i+21}`, status: i % 3 === 0 ? "expired" : "active" }]
+  }))
+];
+
+const container = document.getElementById("games");
+
+function render(list){
+  container.innerHTML = "";
+  list.forEach(game=>{
+    const active = game.codes[0].status === "active";
+    container.innerHTML += `
+      <div class="card">
+        <h2>${game.name}</h2>
+        <span class="badge ${active ? "active":"expired"}">${game.codes[0].status.toUpperCase()}</span>
+        <p class="code">${game.codes[0].code}</p>
+        <p class="updated">Last updated: ${game.updated}</p>
+        ${active
+          ? `<button onclick="copyCode('${game.codes[0].code}')">Copy Code</button>`
+          : `<button class="disabled">Expired</button>`
+        }
+      </div>
+    `;
+  });
+}
+
+function copyCode(code){
+  navigator.clipboard.writeText(code);
+  alert("Code copied!");
+}
+
+render(games);
