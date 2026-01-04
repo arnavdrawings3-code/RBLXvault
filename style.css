@@ -86,3 +86,11 @@ footer { padding:14px; text-align:center; font-size:0.8rem; opacity:0.6; }
   opacity: 0.6;
   padding: 10px;
           }
+.game-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+           }
